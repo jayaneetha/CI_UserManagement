@@ -21,12 +21,16 @@ class Users extends CI_Controller
         $user = $this->user->get_user_details($this->user->get_user_id($username));
 
         if($password==$user->password){
+
             $sessionData = array(
                 'username'  => $username,
                 'id' => $user->id,
                 'logged_in' => TRUE
             );
             $this->session->set_userdata($sessionData);
+
+            $this->user->log_login($user->id);
+
             $this->load->view('welcome');
         }else{
             echo 'fail';

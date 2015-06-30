@@ -18,6 +18,11 @@ class User extends CI_Model
         return $this->db->get()->result()[0]->id;
     }
 
+    public function log_login($id)
+    {
+        $this->db->insert('log', array('user_id' => $id));
+    }
+
 }
 
 /* End of file user.php */
